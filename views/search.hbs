@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Car Search</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <h1>Car Search</h1>
+<form action="/search-results" method="post">
+  <label for="make">Make:</label>
+  <select id="make" name="make">
+    <option value="" selected disabled>Select a Make</option>
+    {{#each makes}}
+      <option value="{{this}}">{{this}}</option>
+    {{/each}}
+  </select>
+
+  <br>
+
+  <label for="model">Model:</label>
+  <select id="model" name="model" disabled>
+    <option value="" selected disabled>Select a Make first</option>
+    {{#each models}}
+      <option value="{{this}}">{{this}}</option>
+    {{/each}}
+  </select>
+
+  <br>
+
+  <label for="model_variant">Model Variant:</label>
+  <select id="model_variant" name="model_variant" disabled>
+    <option value="" selected disabled>Select a Model first</option>
+    {{#each modelVariants}}
+      <option value="{{this}}">{{this}}</option>
+    {{/each}}
+  </select>
+
+  <br>
+
+  <label for="year">Year:</label>
+  <select id="year" name="year" disabled>
+    <option value="" selected disabled>Select a Model Variant first</option>
+    {{#each years}}
+      <option value="{{this}}">{{this}}</option>
+    {{/each}}
+  </select>
+
+  <br>
+
+  <label for="color">Color:</label>
+  <select id="color" name="color" disabled>
+    <option value="" selected disabled>Select a Year first</option>
+    {{#each colors}}
+      <option value="{{this}}">{{this}}</option>
+    {{/each}}
+  </select>
+
+  <br>
+
+  <button type="submit">Search</button>
+</form>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('#make').on('change', function() {
+      var selectedMake = $(this).val();
+      if (selectedMake) {
+        $('#model').prop('disabled', false);
+      } else {
+        $('#model').prop('disabled', true);
+        $('#model_variant').prop('disabled', true);
+        $('#year').prop('disabled', true);
+        $('#color').prop('disabled', true);
+      }
+    });
+
+    $('#model').on('change', function() {
+      var selectedModel = $(this).val();
+      if (selectedModel) {
+        $('#model_variant').prop('disabled', false);
+      } else {
+        $('#model_variant').prop('disabled', true);
+        $('#year').prop('disabled', true);
+        $('#color').prop('disabled', true);
+      }
+    });
+
+    $('#model_variant').on('change', function() {
+      var selectedModelVariant = $(this).val();
+      if (selectedModelVariant) {
+        $('#year').prop('disabled', false);
+      } else {
+        $('#year').prop('disabled', true);
+        $('#color').prop('disabled', true);
+      }
+    });
+
+    $('#year').on('change', function() {
+      var selectedYear = $(this).val();
+      if (selectedYear) {
+        $('#color').prop('disabled', false);
+      } else {
+        $('#color').prop('disabled', true);
+      }
+    });
+  });
+</script>
+</body>
+</html>
