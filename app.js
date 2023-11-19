@@ -119,6 +119,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(compression());
+app.engine('html', require('ejs').renderFile);
 
 console.log("App running on Localhost:5001");
 
@@ -130,7 +131,7 @@ app.get('/', (req, res) => {
 
 
 app.get('/home', function (req, res) {
-    res.sendFile(__dirname + "/routes/home.html");
+    res.render("../routes/home.html");
 });
 
 // app.use('/about', aboutRouter);
