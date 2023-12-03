@@ -85,6 +85,7 @@ router.post("/login", async function (req, res) {
 
 router.get("/signout", authorizeToken, async function (req, res){
     globalToken = '';
+    res.clearCookie('token');
     res.redirect("/")
 })
 
