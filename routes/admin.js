@@ -66,6 +66,7 @@ router.post("/login", async function (req, res) {
           const token = jwt.sign({ username: user.username, role: user.role }, process.env.SECRET_KEY, { expiresIn: '1h' });
            
           globalToken = token;
+          localStorage.setItem('token', token);
           console.log(globalToken);
 
         res.redirect("/admin/home");
@@ -86,9 +87,9 @@ router.get("/signout", authorizeToken, async function (req, res){
     res.redirect("/")
 })
 
-function authorizeToken(globalToken, req, res, next) {
+function authorizeToken( req, res, next) {
         
-    const token = globalToken;
+    const token = localStorage.getItem("token")
     console.log("global", globalToken)
     console.log(token)
 
@@ -113,7 +114,7 @@ function authorizeToken(globalToken, req, res, next) {
 
 
 // GET - Home Page
-router.get('/home', authorizeToken(globalToken), (req, res) => {
+router.get('/home', authorizeToken, (req, res) => {
         res.sendFile(__dirname + "/admin_home.html");
 });
 
