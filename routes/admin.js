@@ -13,7 +13,7 @@ const Imports = require('../models/Imports');
 const ContactModel = require('../models/ContactModel');
 require('dotenv').config();
 
-let globalToken = '';
+const globalToken = '';
 
 
 // Set Image Storage
@@ -119,6 +119,7 @@ router.get('/home', authorizeToken, (req, res) => {
 
 //GET Admin Index
 router.get(`/admin_index`, authorizeToken, async function (req, res) {
+    console.log(globalToken)
     res.render("admin/admin_index", { layout: false });
 });
 
