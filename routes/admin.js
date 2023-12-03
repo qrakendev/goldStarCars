@@ -13,7 +13,7 @@ const Imports = require('../models/Imports');
 const ContactModel = require('../models/ContactModel');
 require('dotenv').config();
 
-const globalToken = '';
+let globalToken = '';
 
 
 // Set Image Storage
@@ -86,7 +86,7 @@ router.get("/signout", authorizeToken, async function (req, res){
     res.redirect("/")
 })
 
-function authorizeToken(req, res, next) {
+function authorizeToken(globalToken, req, res, next) {
         
     const token = globalToken;
     console.log("global", globalToken)
@@ -113,7 +113,7 @@ function authorizeToken(req, res, next) {
 
 
 // GET - Home Page
-router.get('/home', authorizeToken, (req, res) => {
+router.get('/home', authorizeToken(globalToken), (req, res) => {
         res.sendFile(__dirname + "/admin_home.html");
 });
 
