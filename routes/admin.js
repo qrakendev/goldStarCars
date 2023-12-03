@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
+const cookieParser = require('cookie-parser');
 const ElectricModel = require("../models/ElectricModel");
 const GasModel = require('../models/GasModel');
 const CustomerModel = require('../models/CustomerModel');
@@ -66,7 +67,7 @@ router.post("/login", async function (req, res) {
           const token = jwt.sign({ username: user.username, role: user.role }, process.env.SECRET_KEY, { expiresIn: '1h' });
            
           globalToken = token;
-          window.sessionStorage.setItem("token", token)
+          res.cookie('token', token, { httpOnly: true });
           console.log(globalToken);
 
         res.redirect("/admin/home");
@@ -89,7 +90,7 @@ router.get("/signout", authorizeToken, async function (req, res){
 
 function authorizeToken( req, res, next) {
         
-    const token = window.sessionStorage.getItem("token")
+    const token = req.cookies.token;
     console.log("global", globalToken)
     console.log(token)
 
