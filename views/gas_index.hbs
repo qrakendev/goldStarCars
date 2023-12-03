@@ -117,7 +117,7 @@
                         <div class="col-sm info-second-col-gas">
                             <ul>
                                 {{#unless this.isElectric}}
-                                    <li>
+                                    <li style="display: flex;">
                                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24"
                                             viewBox="0 0 226 226" style=" fill:#000000;">
                                             <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1"
@@ -132,11 +132,14 @@
                                                     </path>
                                                 </g>
                                             </g>
-                                        </svg> {{this.engine}}L Turbo Engine
+                                        </svg> 
+                                        <span style="display: inline-block;margin-left: 5px;">
+                                            {{this.engine}}L Turbo Engine    
+                                        </span>
                                     </li>
                                 {{/unless}}
                                 {{#unless isElectric}}
-                                    <li>
+                                    <li style="display: flex;">
                                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                             xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="25" height="25" x="0"
                                             y="0" viewBox="0 0 29.643 29.643" style="enable-background:new 0 0 512 512"
@@ -151,12 +154,15 @@
                                                         fill="currentColor" data-original="#000000" />
                                                 </g>
                                             </g>
-                                        </svg> {{this.gearbox}} Transmission
+                                        </svg>
+                                        <span style="display: inline-block;margin-left: 5px;">
+                                            {{this.gearbox}} Transmission
+                                        </span>
 
                                     </li>
                                 {{/unless}}
 
-                                <li>
+                                <li style="display: flex;">
                                     <svg height="24" viewBox="0 0 192 192" width="24"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <g id="_20-transmission" data-name="20-transmission" fill="currentColor">
@@ -165,7 +171,10 @@
                                             <path
                                                 d="m136 64v24h-16v-24h-16v24h-16v-24h-16v24h-16v-24h-16v32a8 8 0 0 0 8 8h24v24h16v-24h16v24h16v-24h16v24h16v-64z" />
                                         </g>
-                                    </svg> {{this.transmission}}
+                                    </svg> 
+                                    <span style="display: inline-block;margin-left: 5px;">
+                                        {{this.transmission}}
+                                    </span>
                                 </li>
 
                             </ul>
@@ -175,20 +184,26 @@
                         <div class="col-sm info-second-col-gas">
 
                             <ul>
-                                <li>
+                                <li style="display: flex;">
                                     <svg style=" width:26px;height:26px" viewBox="0 0 24 24">
                                         <path fill="currentColor"
                                             d="M10,4H12V6H10V4M7,3H9V5H7V3M7,6H9V8H7V6M6,8V10H4V8H6M6,5V7H4V5H6M6,2V4H4V2H6M13,22A2,2 0 0,1 11,20V10A2,2 0 0,1 13,8V7H14V4H17V7H18V8A2,2 0 0,1 20,10V20A2,2 0 0,1 18,22H13M13,10V20H18V10H13Z" />
-                                    </svg> {{this.colour}}
+                                    </svg> 
+                                    <span style="display: inline-block;margin-left: 5px;">
+                                        {{this.colour}}
+                                    </span>
                                 </li>
-                                <li>
+                                <li style="display: flex;">
                                     <svg style="width:24px;height:24px" viewBox="0 0 24 24">
                                         <path fill="currentColor"
                                             d="M7 18C7 18 4 10 4 6S6 2 6 2H7C7 2 8 2 8 3S7 4 7 6 10 10 10 13 7 18 7 18M12 17C11 17 8 19.5 8 19.5C7.7 19.7 7.8 20 8 20.3C8 20.3 9 22.1 11 22.1H17C18.1 22.1 19 21.2 19 20.1V19.1C19 18 18.1 17.1 17 17.1H12Z" />
-                                    </svg> {{this.interior}}
+                                    </svg> 
+                                    <span style="display: inline-block;margin-left: 5px;">
+                                        {{this.interior}}
+                                    </span>
                                 </li>
 
-                                <li>
+                                <li style="display: flex;">
                                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24"
                                         viewBox="0 0 226 226" style=" fill:#000000;">
                                         <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1"
@@ -203,7 +218,10 @@
                                                 </path>
                                             </g>
                                         </g>
-                                    </svg> {{this.wheel}}
+                                    </svg> 
+                                    <span style="display: inline-block;margin-left: 5px;">
+                                        {{this.wheel}}
+                                    </span>
                                 </li>
 
                             </ul>

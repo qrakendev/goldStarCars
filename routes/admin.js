@@ -89,6 +89,7 @@ router.get("/signout", authorizeToken, async function (req, res){
 function authorizeToken(req, res, next) {
         
     const token = globalToken;
+    console.log(token)
 
     if (token) {
       // Check if the token is revoked
