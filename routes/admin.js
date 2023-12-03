@@ -81,14 +81,15 @@ router.post("/login", async function (req, res) {
     }
 });
 
-router.get("/signout", authorizeToken(globalToken), async function (req, res){
+router.get("/signout", authorizeToken, async function (req, res){
     globalToken = '';
     res.redirect("/")
 })
 
-function authorizeToken(globalToken, req, res, next) {
+function authorizeToken(req, res, next) {
         
     const token = globalToken;
+    console.log("global", globalToken)
     console.log(token)
 
     if (token) {
@@ -112,18 +113,18 @@ function authorizeToken(globalToken, req, res, next) {
 
 
 // GET - Home Page
-router.get('/home', authorizeToken(globalToken), (req, res) => {
+router.get('/home', authorizeToken, (req, res) => {
         res.sendFile(__dirname + "/admin_home.html");
 });
 
 //GET Admin Index
-router.get(`/admin_index`, authorizeToken(globalToken), async function (req, res) {
+router.get(`/admin_index`, authorizeToken, async function (req, res) {
     res.render("admin/admin_index", { layout: false });
 });
 
 
 // GET Electric Cars
-router.get('/electric', authorizeToken(globalToken), async function (req, res) {
+router.get('/electric', authorizeToken, async function (req, res) {
 
     let electric_models = await ElectricModel.find();
     res.render("admin/electric_list", { list: electric_models, layout: 'layout_list' });
@@ -131,13 +132,13 @@ router.get('/electric', authorizeToken(globalToken), async function (req, res) {
 
 
 // Get Add electric Cars Form Page
-router.get('/addelectric', authorizeToken(globalToken), (req, res) => {
+router.get('/addelectric', authorizeToken, (req, res) => {
     res.render("admin/electric_form", { layout: false });
 });
 
 
 // POST Electric Car Form
-router.post('/addelectric', authorizeToken(globalToken), async function (req, res) {
+router.post('/addelectric', authorizeToken, async function (req, res) {
 
     let electric = new ElectricModel(req.body);
 
@@ -150,7 +151,7 @@ router.post('/addelectric', authorizeToken(globalToken), async function (req, re
 
 
 // Delete Electric Car
-router.get('/deleteelectric/:id', authorizeToken(globalToken), async function (req, res) {
+router.get('/deleteelectric/:id', authorizeToken, async function (req, res) {
 
     const result = await ElectricModel.findByIdAndRemove(req.params.id);
     console.log(result);
@@ -162,7 +163,7 @@ router.get('/deleteelectric/:id', authorizeToken(globalToken), async function (r
 
 
 // GET Gas Cars
-router.get('/gas', authorizeToken(globalToken), async function (req, res) {
+router.get('/gas', authorizeToken, async function (req, res) {
 
     let gas_models = await GasModel.find();
     res.render("admin/gas_list", { list: gas_models, layout: 'layout_list' });
@@ -170,12 +171,12 @@ router.get('/gas', authorizeToken(globalToken), async function (req, res) {
 
 
 // Get Add Gas Cars Form Page
-router.get('/addgas', authorizeToken(globalToken), (req, res) => {
+router.get('/addgas', authorizeToken, (req, res) => {
     res.render("admin/gas_form", { layout: false });
 });
 
 // POST Gas Car Form
-router.post('/addgas', authorizeToken(globalToken), async function (req, res) {
+router.post('/addgas', authorizeToken, async function (req, res) {
 
     try {
         console.log(req.body.imagePath)
@@ -197,7 +198,7 @@ router.post('/addgas', authorizeToken(globalToken), async function (req, res) {
 
 
 // Delete Gas Car
-router.get('/deletegas/:id', authorizeToken(globalToken), async function (req, res) {
+router.get('/deletegas/:id', authorizeToken, async function (req, res) {
 
     const result = await GasModel.findByIdAndRemove(req.params.id);
     console.log(result);
@@ -212,7 +213,7 @@ router.get('/deletegas/:id', authorizeToken(globalToken), async function (req, r
 
 
 // GET Customers
-router.get('/customers', authorizeToken(globalToken), async function (req, res) {
+router.get('/customers', authorizeToken, async function (req, res) {
 
     let customers = await CustomerModel.find();
     res.render("admin/customers_list", { list: customers, layout: false });
@@ -234,19 +235,19 @@ router.get('/deletecustomer/:id', async function (req, res) {
 });
 
 //GET Partex
-router.get('/partex', authorizeToken(globalToken), async function (req, res) {
+router.get('/partex', authorizeToken, async function (req, res) {
     let partex = await PartEx.find();
     res.render("admin/partex_list", {list: partex, layout: false})
 })
 
 //GET Import
-router.get('/import', authorizeToken(globalToken), async function (req, res) {
+router.get('/import', authorizeToken, async function (req, res) {
     const importType = await Imports.find();
     res.render("admin/import_list", {list: importType, layout: false})
 })
 
 // Delete Partex
-router.get('/deletepartex/:id', authorizeToken(globalToken), async function (req, res) {
+router.get('/deletepartex/:id', authorizeToken, async function (req, res) {
 
     const result = await PartEx.findByIdAndRemove(req.params.id);
     console.log(result);
@@ -262,13 +263,13 @@ router.get('/deletepartex/:id', authorizeToken(globalToken), async function (req
 // Image Handling
 
 // Get Upload Image Form Page
-router.get('/images', authorizeToken(globalToken), (req, res) => {
+router.get('/images', authorizeToken, (req, res) => {
     res.render("admin/images_upload", { layout: false });
 });
 
 
 // POST Image File
-router.post('/uploadimage', authorizeToken(globalToken), (req, res) => {
+router.post('/uploadimage', authorizeToken, (req, res) => {
     upload(req, res, (err) => {
 
         if (err) {
