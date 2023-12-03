@@ -66,7 +66,7 @@ router.post("/login", async function (req, res) {
           const token = jwt.sign({ username: user.username, role: user.role }, process.env.SECRET_KEY, { expiresIn: '1h' });
            
           globalToken = token;
-          document.cookie = token;
+          window.sessionStorage.setItem("token", token)
           console.log(globalToken);
 
         res.redirect("/admin/home");
@@ -89,7 +89,7 @@ router.get("/signout", authorizeToken, async function (req, res){
 
 function authorizeToken( req, res, next) {
         
-    const token = document.cookie
+    const token = window.sessionStorage.getItem("token")
     console.log("global", globalToken)
     console.log(token)
 
