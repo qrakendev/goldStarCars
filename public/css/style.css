@@ -133,6 +133,7 @@ p{
 }
 
 .car-item:hover{
+  cursor: pointer;
   border: #daa520 solid;
   border-width: .25rem;
   box-shadow: 0 6px 15px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.3);

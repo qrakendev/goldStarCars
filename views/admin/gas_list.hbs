@@ -15,6 +15,7 @@
 <table class="table table-striped">
     <thead>
         <tr>
+            <th>Images</th>
             <th>Title</th>
             <th>T2</th>
             <th>Year</th>
@@ -33,8 +34,6 @@
             <th>Drivetrain</th>
             <th>Wheel</th>
             <th>Description</th>
-            <th>Safety</th>
-            <th>Technology</th>
         </tr>
     </thead>
     <tbody>
@@ -59,8 +58,6 @@
             <td>{{this.drivetrain}}</td>
             <td>{{this.wheel}}</td>
             <td>{{this.description}}</td>
-            <td>{{this.safety}}</td>
-            <td>{{this.technology}}</td>
             <td>
                 <a class="btn btn-outline-danger btn-sm" href="deletegas/{{this._id}}"
                     onclick="return confirm('Are you sure to delete this record ?');">Delete</a>

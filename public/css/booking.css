@@ -51,6 +51,7 @@ body{
 
 /* Specs Row */
 .specs-row{
+    padding-top: 60px;
     margin-top: 5% !important;
 }
 

@@ -75,7 +75,8 @@
             {{#each CARmodels}}
 
 
-            <div class="col-lg-4 car-item">
+            <div class="col-lg-4 car-item" onclick="window.location.href='booknow/{{this._id}}';">
+                {{!-- <a href="booknow/{{this._id}}"></a> --}}
 
                 <div class="modeltitle">
                     <h4>{{this.title}} {{this.t1}}</h4>
@@ -231,6 +232,7 @@
                     </div>
 
                 </div>
+
 
             </div>
 

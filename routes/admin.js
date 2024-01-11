@@ -181,23 +181,22 @@ router.get('/addgas', authorizeToken, (req, res) => {
 
 // POST Gas Car Form
 router.post('/addgas', authorizeToken, async function (req, res) {
-
     try {
-        console.log(req.body.imagePath)
-        req.body.imagePath = req.body.imagePath.map(fileName => 'images/' + fileName);
-        console.log(req.body.imagePath)
-        let gas = new GasModel(req.body);
+        // Convert the comma-separated string of image URLs to an array
+        const imagePathArray = req.body.selectedFiles.split(',');
 
-        result = await gas.save();
+        // Create a new GasModel instance with the updated imagePath
+        let gas = new GasModel({ ...req.body, imagePath: imagePathArray });
+
+        // Save the document to MongoDB
+        const result = await gas.save();
         console.log(result);
-    
-        res.redirect('/admin/gas');
-    
-    } catch (error) {
-        console.log(error)
-        res.status(500).send(error)
-    }
 
+        res.redirect('/admin/gas');
+    } catch (error) {
+        console.log(error);
+        res.status(500).send(error);
+    }
 });
 
 
