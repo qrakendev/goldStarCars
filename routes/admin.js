@@ -181,16 +181,19 @@ router.get('/addgas', authorizeToken, (req, res) => {
 
 // POST Gas Car Form
 router.post('/addgas', authorizeToken, async function (req, res) {
+    // await pause(30000);
     try {
         // Convert the comma-separated string of image URLs to an array
         const imagePathArray = req.body.selectedFiles.split(',');
 
         // Create a new GasModel instance with the updated imagePath
-        let gas = new GasModel({ ...req.body, imagePath: imagePathArray });
-
-        // Save the document to MongoDB
-        const result = await gas.save();
-        console.log(result);
+        if(req.body.selectedFiles === ""){
+            return
+        } else {
+            let gas = new GasModel({ ...req.body, imagePath: imagePathArray });
+            const result = await gas.save();
+            console.log(result);
+        }
 
         res.redirect('/admin/gas');
     } catch (error) {
@@ -198,6 +201,10 @@ router.post('/addgas', authorizeToken, async function (req, res) {
         res.status(500).send(error);
     }
 });
+
+// function pause(ms) {
+//     return new Promise(resolve => setTimeout(resolve, ms));
+// }
 
 
 // Delete Gas Car
